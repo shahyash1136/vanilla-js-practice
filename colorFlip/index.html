@@ -1,11 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title> Color Flip</title>
+    <style>
+        body{
+            position: relative;
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            transition: all 225ms linear;
+        }
+        .btn {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            background: -webkit-linear-gradient(258deg, #4f66ea, #e14dff 60vh);
+            background: -moz-linear-gradient(258deg, #4f66ea, #e14dff 60vh);
+            background: -ms-linear-gradient(258deg, #4f66ea, #e14dff 60vh);
+            background: -o-linear-gradient(258deg, #4f66ea, #e14dff 60vh);
+            background: linear-gradient(258deg, #4f66ea, #e14dff 60vh);
+            cursor: pointer;
+            font-size: 18px;
+            font-family: sans-serif;
+            font-weight: 500;
+            height: 40px;
+            max-width: 250px;
+            text-align: center;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flexbox;
+            display: flex;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+            -webkit-border-radius: 2px;
+            -moz-border-radius: 2px;
+            -ms-border-radius: 2px;
+            -o-border-radius: 2px;
+            border-radius: 2px;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -ms-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn span {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            padding: 0 10px;
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+            color: #ffffff;
+            font-size: 15px;
+        }
+    </style>
 </head>
+
 <body>
-    
+    <div class="btn"> <span>Change Background</span> </div>
+    <script src="./main.js"></script>
 </body>
+
 </html>
