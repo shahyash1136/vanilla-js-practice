@@ -1,0 +1,105 @@
+body {
+    position: relative;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    transition: all 225ms linear;
+}
+
+.btn {
+    position: relative;
+    margin: auto;
+    background: -webkit-linear-gradient(258deg, #4f66ea, #e14dff 60vh);
+    background: -moz-linear-gradient(258deg, #4f66ea, #e14dff 60vh);
+    background: -ms-linear-gradient(258deg, #4f66ea, #e14dff 60vh);
+    background: -o-linear-gradient(258deg, #4f66ea, #e14dff 60vh);
+    background: linear-gradient(258deg, #4f66ea, #e14dff 60vh);
+    cursor: pointer;
+    font-size: 18px;
+    font-family: sans-serif;
+    font-weight: 500;
+    height: 40px;
+    max-width: 250px;
+    text-align: center;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+}
+
+.btn span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    padding: 0 10px;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: #ffffff;
+    font-size: 15px;
+    text-transform: capitalize;
+}
+
+.counterBox {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.counterBox__top  {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+.heading{
+    font-size: 30px;
+    font-family: sans-serif;
+    text-transform: uppercase;
+}
+.value{
+    font-size: 150px;
+    line-height: 1;
+    font-family: sans-serif;
+}
+.red{
+    color: red;
+}
+.green{
+    color: green;
+}
+.counterBox__bottom{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 430px;
+}
+.counterBox__bottom .btn:not(:last-child){
+    margin-right: 15px;
+}
