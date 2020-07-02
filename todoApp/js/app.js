@@ -21,7 +21,8 @@ let addData = () => {
         alert('Please enter a value')
     } else {
         let text = document.querySelector('.inputText').value;
-        document.querySelector('.toDo__list').innerHTML += `<li><div class="toDo__item"><div class="left"><input type="checkbox" class="checkBox" name="" id=""><span>${text}</span></div><div class="right"><span class="delete"></span></div></div></li>`;
+        let id = Date.now()
+        document.querySelector('.toDo__list').innerHTML += `<li data-id='${id }'><div class="toDo__item"><div class="left"><input type="checkbox" class="checkBox" name="" id="${id }"><span>${text}</span></div><div class="right"><span class="delete"></span></div></div></li>`;
         Focus();
 
         let list = document.querySelectorAll('.toDo__list li');
