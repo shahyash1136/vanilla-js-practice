@@ -5365,9 +5365,6 @@ _:-ms-fullscreen,
   text-transform: capitalize;
   font-size: 14px;
 }
-.toDo__list li:not(:last-child) {
-  margin-bottom: 20px;
-}
 .toDo__body {
   padding: 30px 0;
 }
@@ -5387,6 +5384,7 @@ _:-ms-fullscreen,
   -ms-transition: all 625ms ease-in-out;
   -o-transition: all 625ms ease-in-out;
   transition: all 625ms ease-in-out;
+  margin-top: 20px;
 }
 .toDo__item.done .left span {
   text-decoration: line-through;

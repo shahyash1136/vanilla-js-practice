@@ -11,52 +11,85 @@ day = dayArray[newDate.getDay()];
 
 document.querySelector('.dateBox').innerHTML = `<span class="date">${date}</span><span class="month">${month}</span><span class="year">${year}</span><span class="day">${day}</span>`;
 
+
+function Todo(id, text) {
+    this.id = id;
+    this.text = text;
+}
+let data = {
+    todo: [],
+};
+
 let Focus = () => {
     document.querySelector('.inputText').value = '';
     document.querySelector('.inputText').focus();
 }
 
-let addData = () => {
-    if (document.querySelector('.inputText').value === '' || document.querySelector('.inputText').value == null) {
-        alert('Please enter a value')
-    } else {
-        let text = document.querySelector('.inputText').value;
-        let id = Date.now()
-        document.querySelector('.toDo__list').innerHTML += `<li data-id='${id }'><div class="toDo__item"><div class="left"><input type="checkbox" class="checkBox" name="" id="${id }"><span>${text}</span></div><div class="right"><span class="delete"></span></div></div></li>`;
-        Focus();
-
-        let list = document.querySelectorAll('.toDo__list li');
-        let listArr = Array.prototype.slice.call(list);
-        listArr.forEach(element => {
-            element.children[0].children[1].children[0].addEventListener('click', function () {
-                this.parentNode.parentNode.parentNode.remove();
-                Focus();
-            });
-            checkBox = element.children[0].children[0].children[0];
-            checkBox.addEventListener('click', function () {
-                this.checked === true ? this.parentNode.parentNode.classList.add('done') : this.parentNode.parentNode.classList.remove('done') 
-
-            })
-        });
-
-
-
-
+document.querySelector('.btnAdd').addEventListener('click', add);
+document.querySelector('.btnClear').addEventListener('click', clearData);
+document.addEventListener('keypress', function (e) {
+    if (e.keyCode === 13 && e.which === 13) {
+        add();
     }
+});
+
+document.querySelector('.toDo__list').addEventListener('click', cmpletedTask);
+
+function add() {
+    let text = document.querySelector('.inputText').value;
+
+    if (text !== '') {
+        let ID;
+        if (data.todo.length > 0) {
+            ID = data.todo[data.todo.length - 1].id + 1;
+        } else {
+            ID = 0;
+        }
+        let item = new Todo(ID, text);
+        data.todo.push(item);
+        
+
+        var html = `<div class="toDo__item" id="list-${item.id}"><div class="left"><input type="checkbox" id="${item.id}" class="check"><span>${item.text}</span></div><div class="right"><span class="delete"></span></div></div>`;
+
+        document.querySelector('.toDo__list').insertAdjacentHTML('beforeend', html);
+
+        Focus();
+    }
+}
+
+function cmpletedTask(event) {
+
+    var checkBox = event.target.checked;
+    if (checkBox == true) {
+        event.target.parentNode.parentNode.classList.add('done');
+    } else if (checkBox == false) {
+        event.target.parentNode.parentNode.classList.remove('done');
+    }
+
+    let itemId = event.target.parentNode.parentNode.id;
+    if (itemId) {
+        let splitId = itemId.split('-');
+        let ID = parseInt(splitId[1]);
+
+        var ids, index;
+
+        ids = data.todo.map(function (cur) {
+            return cur.ID;
+        });
+        index = ids.indexOf(ID);
+        if (ID !== -1) {
+            data.todo.splice(index, 1);
+        }
+
+        let element = document.getElementById(itemId);
+        element.parentNode.removeChild(element);
+    }
+
 
 }
 
-document.querySelector('.btnAdd').addEventListener('click', addData);
-document.querySelector('body').addEventListener('keypress', function (e) {
-    if (e.keyCode === 13 || e.which === 13) {
-        addData();
-    }
-});
-
-document.querySelector('.btnClear').addEventListener('click', function (e) {
-    let list = document.querySelectorAll('.toDo__list li');
-    for (let i = 0; i < list.length; i++) {
-        list[i].remove();
-    }
-    Focus();
-});
+function clearData(event) {
+    document.querySelector('.toDo__list').innerHTML = '';
+    data.todo = [];
+    
+}
