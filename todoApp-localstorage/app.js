@@ -25,14 +25,13 @@ document.querySelector('.toDo__list').addEventListener('click', function (event)
     let checkBox, itemId, Id, IdNum, element;
 
     checkBox = event.target.checked;
-    /* if (checkBox === true) {
+    if (checkBox === true) {
         event.target.parentNode.parentNode.classList.add('done');
         var todoArr = JSON.parse(window.localStorage.getItem('todoList'));
 
         for (let i = 0; i < todoArr.length; i++) {
             if (todoArr[i].id === parseInt(event.target.id)) {
                 todoArr[i].checked = true;
-                document.getElementById(event.target.id) = todoArr[i].checked;
             }
         }
         window.localStorage.setItem('todoList', JSON.stringify(todoArr));
@@ -45,13 +44,12 @@ document.querySelector('.toDo__list').addEventListener('click', function (event)
         for (let i = 0; i < todoArr.length; i++) {
             if (todoArr[i].id === parseInt(event.target.id)) {
                 todoArr[i].checked = false;
-                document.getElementById(event.target.id) = todoArr[i].checked;
             }
         }
         window.localStorage.setItem('todoList', JSON.stringify(todoArr));
          
-    } */
-    checkBox === true ? event.target.parentNode.parentNode.classList.add('done') : event.target.parentNode.parentNode.classList.remove('done')
+    }
+    //checkBox === true ? event.target.parentNode.parentNode.classList.add('done') : event.target.parentNode.parentNode.classList.remove('done')
 
     itemId = event.target.parentNode.parentNode.parentNode.id;
     if (itemId) {
@@ -59,7 +57,7 @@ document.querySelector('.toDo__list').addEventListener('click', function (event)
         IdNum = parseInt(Id[1]);
 
 
-        //delete item from local storage
+        //delete item from local storage and Ui
         var todoArr = JSON.parse(window.localStorage.getItem('todoList'));
         for (let i = 0; i < todoArr.length; i++) {
             if (todoArr[i].id === IdNum) {
@@ -68,10 +66,6 @@ document.querySelector('.toDo__list').addEventListener('click', function (event)
         }
         window.localStorage.setItem('todoList', JSON.stringify(todoArr));
         onLoadData();
-
-        //delete Item from UI
-        /* element = document.getElementById(itemId);
-        element.parentNode.removeChild(element); */
     }
 
 });
@@ -129,7 +123,13 @@ function onLoadData() {
     todoListContainer.innerHTML = '';
     if (window.localStorage.getItem('todoList') !== null) {
         for (let i = 0; i < todoContent.length; i++) {
-            markUp = `<div class="toDo__item" id="list-${todoContent[i].id}"><div class="left"><input type="checkbox" name="" id="${todoContent[i].id}"><span>${todoContent[i].text}</span></div><div class="right"><div><span class="delete"></span></div></div></div>`
+
+            if (todoContent[i].checked === true) {
+                markUp = `<div class="toDo__item done" id="list-${todoContent[i].id}"><div class="left"><input type="checkbox" name="" id="${todoContent[i].id}" checked><span>${todoContent[i].text}</span></div><div class="right"><div><span class="delete"></span></div></div></div>`
+            }else{
+                markUp = `<div class="toDo__item" id="list-${todoContent[i].id}"><div class="left"><input type="checkbox" name="" id="${todoContent[i].id}"><span>${todoContent[i].text}</span></div><div class="right"><div><span class="delete"></span></div></div></div>`
+            }
+
             todoListContainer.innerHTML += markUp;
         }
     }
