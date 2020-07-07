@@ -49,7 +49,7 @@ function add() {
         data.todo.push(item);
         
 
-        var html = `<div class="toDo__item" id="list-${item.id}"><div class="left"><input type="checkbox" id="${item.id}" class="check"><span>${item.text}</span></div><div class="right"><span class="delete"></span></div></div>`;
+        var html = `<div class="toDo__item" id="list-${item.id}"><div class="left"><input type="checkbox" id="${item.id}" class="check"><span>${item.text}</span></div><div class="right"><div><span class="delete"></span></div></div></div>`;
 
         document.querySelector('.toDo__list').insertAdjacentHTML('beforeend', html);
 
@@ -66,7 +66,7 @@ function cmpletedTask(event) {
         event.target.parentNode.parentNode.classList.remove('done');
     }
 
-    let itemId = event.target.parentNode.parentNode.id;
+    let itemId = event.target.parentNode.parentNode.parentNode.id;
     if (itemId) {
         let splitId = itemId.split('-');
         let ID = parseInt(splitId[1]);

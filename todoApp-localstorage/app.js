@@ -18,25 +18,38 @@ document.addEventListener('keypress', function (event) {
         add();
     }
 });
+document.querySelector('.btnClear').addEventListener('click',clearAll)
 
-/* document.querySelector('.toDo__list').addEventListener('click', function (event) {
+
+document.querySelector('.toDo__list').addEventListener('click', function (event) {
     let checkBox, itemId, Id, IdNum, element;
 
     checkBox = event.target.checked;
 
     checkBox === true ? event.target.parentNode.parentNode.classList.add('done') : event.target.parentNode.parentNode.classList.remove('done')
 
-    itemId = event.target.parentNode.parentNode.id;
+    itemId = event.target.parentNode.parentNode.parentNode.id;
     if (itemId) {
         Id = itemId.split('-');
         IdNum = parseInt(Id[1]);
 
+
+        //delete item from local storage
+        var todoArr = JSON.parse(window.localStorage.getItem('todoList'));
+        for (let i = 0; i < todoArr.length; i++) {
+            if (todoArr[i].id === IdNum) {
+                todoArr.splice(i,1);
+            }
+        }
+        window.localStorage.setItem('todoList', JSON.stringify(todoArr));
+        onLoadData();
+        
         //delete Item from UI
         element = document.getElementById(itemId);
         element.parentNode.removeChild(element);
     }
 
-}); */
+});
 
 
 
@@ -58,27 +71,44 @@ function add() {
     todo = {
         id: id,
         text: text,
+        checked: false,
     }
 
-    // check if localstorage is null or not
-    if (window.localStorage.getItem('todoList') === null) {
-        //create blank Array;
-        var todoArr = [];
-        //store objects in blank Array
-        todoArr.push(todo);
-        window.localStorage.setItem('todoList', JSON.stringify(todoArr));
-    } else {
-        var todoArr = JSON.parse(window.localStorage.getItem('todoList'));
-        todoArr.push(todo);
-        window.localStorage.setItem('todoList', JSON.stringify(todoArr));
-    }
 
+    if (text !== '') {
+        // check if localstorage is null or not
+        if (window.localStorage.getItem('todoList') === null) {
+            //create blank Array;
+            var todoArr = [];
+            //store objects in blank Array
+            todoArr.push(todo);
+            window.localStorage.setItem('todoList', JSON.stringify(todoArr));
+        } else {
+            var todoArr = JSON.parse(window.localStorage.getItem('todoList'));
+            todoArr.push(todo);
+            window.localStorage.setItem('todoList', JSON.stringify(todoArr));
+        }
+
+        var todoContent = JSON.parse(window.localStorage.getItem('todoList'));
+        for (let i = 0; i < todoContent.length; i++) {
+            markUp = `<div class="toDo__item" id="list-${todoContent[i].id}"><div class="left"><input type="checkbox" name="" id="${todoContent[i].id}"><span>${todoContent[i].text}</span></div><div class="right"><div><span class="delete"></span></div></div></div>`
+        }
+        document.querySelector('.toDo__list').insertAdjacentHTML('beforeend', markUp);
+        Focus();
+    }
+}
+
+function onLoadData() {
     var todoContent = JSON.parse(window.localStorage.getItem('todoList'));
-
+    var todoListContainer = document.querySelector('.toDo__list');
+    todoListContainer.innerHTML = '';
     for (let i = 0; i < todoContent.length; i++) {
-        markUp = `<div class="toDo__item" id="list-${todoContent[i].id}"><div class="left"><input type="checkbox" name="" id="${todoContent[i].id}"><span>${todoContent[i].text}</span></div><div class="right"><span class="delete"></span></div></div>`
+        markUp = `<div class="toDo__item" id="list-${todoContent[i].id}"><div class="left"><input type="checkbox" name="" id="${todoContent[i].id}"><span>${todoContent[i].text}</span></div><div class="right"><div><span class="delete"></span></div></div></div>`
+        todoListContainer.innerHTML += markUp;
     }
-    document.querySelector('.toDo__list').innerHTML += markUp;
+}
 
-
+function clearAll(){
+    window.localStorage.clear();
+    document.querySelector('.toDo__list').innerHTML = '';   
 }
