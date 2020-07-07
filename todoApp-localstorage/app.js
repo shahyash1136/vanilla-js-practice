@@ -18,7 +18,7 @@ document.addEventListener('keypress', function (event) {
         add();
     }
 });
-document.querySelector('.btnClear').addEventListener('click',clearAll)
+document.querySelector('.btnClear').addEventListener('click', clearAll)
 
 
 document.querySelector('.toDo__list').addEventListener('click', function (event) {
@@ -38,12 +38,12 @@ document.querySelector('.toDo__list').addEventListener('click', function (event)
         var todoArr = JSON.parse(window.localStorage.getItem('todoList'));
         for (let i = 0; i < todoArr.length; i++) {
             if (todoArr[i].id === IdNum) {
-                todoArr.splice(i,1);
+                todoArr.splice(i, 1);
             }
         }
         window.localStorage.setItem('todoList', JSON.stringify(todoArr));
         onLoadData();
-        
+
         //delete Item from UI
         element = document.getElementById(itemId);
         element.parentNode.removeChild(element);
@@ -108,7 +108,7 @@ function onLoadData() {
     }
 }
 
-function clearAll(){
+function clearAll() {
     window.localStorage.clear();
-    document.querySelector('.toDo__list').innerHTML = '';   
+    document.querySelector('.toDo__list').innerHTML = '';
 }
