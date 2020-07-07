@@ -25,7 +25,32 @@ document.querySelector('.toDo__list').addEventListener('click', function (event)
     let checkBox, itemId, Id, IdNum, element;
 
     checkBox = event.target.checked;
+    /* if (checkBox === true) {
+        event.target.parentNode.parentNode.classList.add('done');
+        var todoArr = JSON.parse(window.localStorage.getItem('todoList'));
 
+        for (let i = 0; i < todoArr.length; i++) {
+            if (todoArr[i].id === parseInt(event.target.id)) {
+                todoArr[i].checked = true;
+                document.getElementById(event.target.id) = todoArr[i].checked;
+            }
+        }
+        window.localStorage.setItem('todoList', JSON.stringify(todoArr));
+        
+
+    } else {
+        event.target.parentNode.parentNode.classList.remove('done');
+        var todoArr = JSON.parse(window.localStorage.getItem('todoList'));
+
+        for (let i = 0; i < todoArr.length; i++) {
+            if (todoArr[i].id === parseInt(event.target.id)) {
+                todoArr[i].checked = false;
+                document.getElementById(event.target.id) = todoArr[i].checked;
+            }
+        }
+        window.localStorage.setItem('todoList', JSON.stringify(todoArr));
+         
+    } */
     checkBox === true ? event.target.parentNode.parentNode.classList.add('done') : event.target.parentNode.parentNode.classList.remove('done')
 
     itemId = event.target.parentNode.parentNode.parentNode.id;
@@ -45,8 +70,8 @@ document.querySelector('.toDo__list').addEventListener('click', function (event)
         onLoadData();
 
         //delete Item from UI
-        element = document.getElementById(itemId);
-        element.parentNode.removeChild(element);
+        /* element = document.getElementById(itemId);
+        element.parentNode.removeChild(element); */
     }
 
 });
@@ -102,9 +127,11 @@ function onLoadData() {
     var todoContent = JSON.parse(window.localStorage.getItem('todoList'));
     var todoListContainer = document.querySelector('.toDo__list');
     todoListContainer.innerHTML = '';
-    for (let i = 0; i < todoContent.length; i++) {
-        markUp = `<div class="toDo__item" id="list-${todoContent[i].id}"><div class="left"><input type="checkbox" name="" id="${todoContent[i].id}"><span>${todoContent[i].text}</span></div><div class="right"><div><span class="delete"></span></div></div></div>`
-        todoListContainer.innerHTML += markUp;
+    if (window.localStorage.getItem('todoList') !== null) {
+        for (let i = 0; i < todoContent.length; i++) {
+            markUp = `<div class="toDo__item" id="list-${todoContent[i].id}"><div class="left"><input type="checkbox" name="" id="${todoContent[i].id}"><span>${todoContent[i].text}</span></div><div class="right"><div><span class="delete"></span></div></div></div>`
+            todoListContainer.innerHTML += markUp;
+        }
     }
 }
 
