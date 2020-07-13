@@ -13,8 +13,8 @@ FR.loadJSON = function (type, typeFunction) {
         success: function (data) {
             typeFunction(data);
         },
-        error: function(){
-            alert( 'Requested page not found. [404]');
+        error: function () {
+            alert('Requested page not found. [404]');
         }
     })
 }
@@ -46,20 +46,21 @@ FR.searchResult = function () {
         }
     }
 }
-FR.recipeBtn = function(){
+FR.recipeBtn = function () {
     var recipeBtn = document.querySelectorAll('.recipe__btn');
     var recipeBtnArr = Array.prototype.slice.call(recipeBtn);
     //console.log(recipeBtnArr);
     recipeBtnArr.forEach(element => {
         element.addEventListener('click', function (event) {
             var dataId = this.getAttribute('data-recipeId');
+            document.querySelector('.recipepopup').parentNode.classList.add('active');
             FR.loadJSON("get?rId=" + dataId, function (data) {
                 FR.getData = data;
-                FR.recipeUi(data);                
+                FR.recipeUi(data);
             });
         })
     });
-} 
+}
 
 FR.recipeListUi = function (data) {
     var markup = '';
@@ -69,6 +70,47 @@ FR.recipeListUi = function (data) {
     }
 }
 
-FR.recipeUi = function(data){
-    console.log(data.recipe);
+FR.recipeUi = function (data) {
+    var markup = '';
+    var ingredients = '';
+    for (let i = 0; i < data.recipe.ingredients.length; i++) {
+        ingredients += `<li>${data.recipe.ingredients[i]}</li>`
+
+    }
+    markup += `<div class="recipeBox">
+        <div class="recipeBox__left">
+            <div class="imageBox" style="background-image: url('${data.recipe.image_url}');">
+            </div>
+        </div>
+        <div class="recipeBox__right">
+            <div class="heading">
+                <h2>${data.recipe.title}</h2>
+            </div>
+            <div class="ingredients">
+                <ul>
+                    ${ingredients}
+                </ul>
+            </div>
+            <div class="recipe__directions">
+                <h2 class="heading-2">How to cook it</h2>
+                <p class="recipe__directions-text">
+                    This recipe was carefully designed and tested by <a href="${data.recipe.publisher_url}" target="_blank"><span class="recipe__by">${data.recipe.publisher}</span></a>. Please check out directions at their website.
+                </p>
+                <a class="btn" href="${data.recipe.source_url}" target="_blank">
+                    <span>Directions</span>
+                </a>
+            </div>
+        </div>
+    </div>`;
+    console.log(data);
+    document.querySelector('.recipepopup .popup-modal-bg .popup-body').innerHTML = markup;
+}
+// Get the modal
+var modal = document.querySelector('.popup');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.classList.remove('active');
+  }
 }

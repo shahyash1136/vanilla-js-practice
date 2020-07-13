@@ -4,7 +4,7 @@
 @import url("https://fonts.googleapis.com/css?family=Anton|Roboto:300,400,500,700&display=swap");
 /* @import '_custom-icon.scss'; */
 /* @import '_maps.scss'; */
-.recipe__data, .recipe__container, .search__container, .flexBox {
+.popup .popup-modal.recipepopup .popup-body .recipeBox, .recipe__data, .recipe__container, .search__container, .flexBox {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-flex;
@@ -1697,5 +1697,104 @@ _:-ms-fullscreen,
   background-color: transparent;
   color: #f48982;
   border-color: #f48982;
+}
+
+.popup .popup-modal.recipepopup {
+  max-width: 800px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.popup .popup-modal.recipepopup .popup-modal-bg {
+  max-width: inherit;
+  padding: 0;
+}
+.popup .popup-modal.recipepopup .popup-body {
+  display: block;
+}
+.popup .popup-modal.recipepopup .popup-body .recipeBox__left {
+  flex: 0 0 50%;
+  width: 50%;
+  overflow: hidden;
+}
+.popup .popup-modal.recipepopup .popup-body .recipeBox__left .imageBox {
+  line-height: 0;
+  height: 100%;
+  height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.popup .popup-modal.recipepopup .popup-body .recipeBox__right {
+  flex: 0 0 50%;
+  width: 50%;
+  padding: 15px;
+}
+.popup .popup-modal.recipepopup .popup-body .recipeBox__right .heading {
+  margin-bottom: 15px;
+}
+.popup .popup-modal.recipepopup .popup-body .recipeBox__right .heading h2 {
+  font-size: 24px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  color: #F48982;
+  text-transform: uppercase;
+  text-align: center;
+}
+.popup .popup-modal.recipepopup .popup-body .recipeBox__right .heading-2 {
+  font-size: 18px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  color: #F48982;
+  text-transform: uppercase;
+  margin: 20px 0;
+  text-align: center;
+}
+.popup .popup-modal.recipepopup .popup-body .recipeBox__right .ingredients ul {
+  list-style: none;
+}
+.popup .popup-modal.recipepopup .popup-body .recipeBox__right .ingredients ul li {
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  color: #968B87;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+.popup .popup-modal.recipepopup .popup-body .recipeBox__right p {
+  font-size: 15px;
+  text-align: center;
+  color: #968B87;
+  width: 90%;
+  margin: 0 auto 20px;
+}
+.popup .popup-modal.recipepopup .popup-body .recipeBox__right p a {
+  color: #968B87;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+}
+.popup .popup-modal.recipepopup .popup-body .recipeBox__right a.btn {
+  height: 35px;
+  display: block;
+  color: #ffffff;
+  text-decoration: none;
+  width: 100px;
+  margin: auto;
+  background: -webkit-linear-gradient(135deg, #fbdb89 0%, #f48982 100%);
+  background: -moz-linear-gradient(135deg, #fbdb89 0%, #f48982 100%);
+  background: -ms-linear-gradient(135deg, #fbdb89 0%, #f48982 100%);
+  background: -o-linear-gradient(135deg, #fbdb89 0%, #f48982 100%);
+  background: linear-gradient(135deg, #fbdb89 0%, #f48982 100%);
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
 }
 /*# sourceMappingURL=main.css.map */
