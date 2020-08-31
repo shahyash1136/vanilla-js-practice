@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/filter.scss"],"names":[],"mappings":"AACE;EACE;EACA;EACA;EACA;EACA","file":"filter.css","sourcesContent":[".filter {\r\n  ul {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-items: center;\r\n    height: 40px;\r\n    margin: 10px 0;\r\n  }\r\n}\r\n"]}

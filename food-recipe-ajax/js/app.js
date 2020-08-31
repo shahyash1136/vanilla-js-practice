@@ -77,31 +77,7 @@ FR.recipeUi = function (data) {
         ingredients += `<li>${data.recipe.ingredients[i]}</li>`
 
     }
-    markup += `<div class="recipeBox">
-        <div class="recipeBox__left">
-            <div class="imageBox" style="background-image: url('${data.recipe.image_url}');">
-            </div>
-        </div>
-        <div class="recipeBox__right">
-            <div class="heading">
-                <h2>${data.recipe.title}</h2>
-            </div>
-            <div class="ingredients">
-                <ul>
-                    ${ingredients}
-                </ul>
-            </div>
-            <div class="recipe__directions">
-                <h2 class="heading-2">How to cook it</h2>
-                <p class="recipe__directions-text">
-                    This recipe was carefully designed and tested by <a href="${data.recipe.publisher_url}" target="_blank"><span class="recipe__by">${data.recipe.publisher}</span></a>. Please check out directions at their website.
-                </p>
-                <a class="btn" href="${data.recipe.source_url}" target="_blank">
-                    <span>Directions</span>
-                </a>
-            </div>
-        </div>
-    </div>`;
+    markup += `<div class="recipeBox"> <div class="recipeBox__left"> <div class="imageBox" style="background-image: url('${data.recipe.image_url}');"> </div></div><div class="recipeBox__right"> <div class="heading"> <h2>${data.recipe.title}</h2> </div><div class="ingredients"> <ul> ${ingredients}</ul> </div><div class="recipe__directions"> <h2 class="heading-2">How to cook it</h2> <p class="recipe__directions-text"> This recipe was carefully designed and tested by <a href="${data.recipe.publisher_url}" target="_blank"><span class="recipe__by">${data.recipe.publisher}</span></a>. Please check out directions at their website. </p><a class="btn" href="${data.recipe.source_url}" target="_blank"> <span>Directions</span> </a> </div></div></div>`;
     console.log(data);
     document.querySelector('.recipepopup .popup-modal-bg .popup-body').innerHTML = markup;
 }
